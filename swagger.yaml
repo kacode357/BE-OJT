@@ -1,0 +1,68 @@
+swagger: '2.0'
+info:
+  description: 'Tamoki Course Online Management API docs'
+  version: '1.0.0'
+  title: 'Course Online Management'
+  termOfService: 'Tamoki'
+  contact:
+    email: 'loinguyenlamthanh@gmail.com'
+  license:
+    name: 'MIT'
+    url: 'https://opensource.org/licenses/MIT'
+basePath: '/api'
+tags:
+- name: 'auth'
+  description: 'Authentication APIs'
+
+schemes:
+- 'https'
+paths:
+  /auth:
+    post:
+      tags:
+      - 'auth'
+      summary: 'Login API and get token'
+      description: 'Input email and password'
+      operationId: "login"
+      consumes:
+      - 'application/json'
+      produces:
+      - 'application/json'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Login for user'
+        required: true
+        schema: 
+          $ref: '#/definitions/LoginDto'
+      responses:
+        '400':
+          description: 'Invalid input'
+  /auth/google:
+    post:
+      tags:
+      - 'auth'
+      summary: 'Login API and get token By Google'
+      description: 'Input google_id'
+      operationId: "loginByGoogle"
+      consumes:
+      - 'application/json'
+      produces:
+      - 'application/json'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Login for user'
+        required: true
+        schema: 
+          $ref: '#/definitions/LoginDto'
+      responses:
+        '400':
+          description: 'Invalid input'
+
+definitions:
+  LoginDto:
+    type: 'object'
+    properties:
+      google_id:
+        type: 'string'
